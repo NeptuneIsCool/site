@@ -188,13 +188,13 @@ footer {
     color: #aeccba;
 }
 .cloak-buttons {
-    display: flex;            /* horizontal layout */
-    flex-direction: row;      /* row is default but explicit */
-    justify-content: center;  /* center horizontally */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    gap: 15px;                /* space between buttons */
-    margin-top: 20px;         /* space from search bar */
-    z-index: 2;               /* keep above background */
+    gap: 15px;
+    margin-top: 20px;
+    z-index: 2;
     position: relative;
 }
 
