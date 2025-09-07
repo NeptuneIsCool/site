@@ -1,0 +1,214 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1a1f1c;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(21, 24, 22, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 4px solid #000; 
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2em;
+    text-decoration: none;
+    color: #A6BFA9;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-icon {
+    font-size: 35px !important;
+    transition: color 0.3s, transform 0.3s;
+    transform: scale(1);
+}
+
+.nav-item:hover .nav-icon {
+    color: #fff;
+    transform: scale(1.25);
+    transition: color 0.3s, transform 0.3s;
+}
+
+
+
+.iDontKnowWhatToNameTs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px; 
+    position: relative;
+    z-index: 2;
+}
+
+.ce-img {
+    height: 11em;
+    width: 11em;
+    object-fit: contain;
+    margin-right: 0.2em;
+    vertical-align: middle;
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.rium {
+    font-size: 7em;
+    color: #bfd4c7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sub-rium {
+    font-size: 0.15em;
+    color: #777;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -0.2em;
+    display: inline-block;
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+footer {
+    position: absolute;
+    bottom: 1em;
+    font-size: 0.8em;
+    color: #777;
+    text-align: center;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.search-bar {
+    margin-top: 45px;
+    padding: 0.8em 1.2em;
+    font-size: 1.5em;
+    border-radius: 0.15em;
+    border: 2.5px solid #A6BFA9;
+    outline: none;
+    background: #23282500;
+    color: #A6BFA9;
+    caret-color: #A6BFA9;
+    width: 350px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+    transition: background 0.3s, color 0.3s, width 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s;
+    position: relative;
+    z-index: 2;
+}
+
+.search-bar::placeholder {
+    color: #A6BFA9;
+    opacity: 1; 
+}
+
+.search-bar:focus {
+    background: #1a1f1c;
+    color: #ffffff;
+    width: 500px; 
+    border-color: #aeccba;
+}
+
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+.underconstruction {
+    font-size: 400px;
+    color: #aeccba;
+}
+.cloak-buttons {
+    display: flex;            /* horizontal layout */
+    flex-direction: row;      /* row is default but explicit */
+    justify-content: center;  /* center horizontally */
+    align-items: center;
+    gap: 15px;                /* space between buttons */
+    margin-top: 20px;         /* space from search bar */
+    z-index: 2;               /* keep above background */
+    position: relative;
+}
+
+.cloak {
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #33333300;
+    color: #aeccba;
+    border: solid 2px #aeccba;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0;
+    animation: fadeInUp 1s ease-in-out;
+    animation-delay: 0.7s;
+    animation-fill-mode: forwards;
+}
