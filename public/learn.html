@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cerium AI</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: #1a1f1c;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #A6BFA9;
+    overflow: hidden;
+}
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(21, 24, 22, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-bottom: 4px solid #000;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2em;
+    text-decoration: none;
+    color: #A6BFA9;
+    position: relative;
+    cursor: pointer;
+}
+.nav-icon {
+    font-size: 35px !important;
+    transition: color 0.3s, transform 0.3s;
+}
+.nav-item:hover .nav-icon {
+    color: #fff;
+    transform: scale(1.25);
+}
+.fade-in-up {
+    animation: fadeInUp 1s ease-in-out forwards;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 180px;
+    z-index: 2;
+}
+.ce-img {
+    height: 11em;
+    width: 11em;
+    object-fit: contain;
+    margin-right: 0.2em;
+}
+.rium {
+    font-size: 7em;
+    color: #bfd4c7;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+.player-card {
+    background: #232825;
+    border-radius: 3px;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #A6BFA9;
+    margin-top: 50px;
+    z-index: 2;
+}
+#chat-container {
+    width: 96%;
+    max-width: 700px;
+    height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 2.5px solid #A6BFA9;
+    border-radius: 0.15em;
+    background: #232825;
+}
+#chat-container::-webkit-scrollbar {
+    width: 10px;
+}
+#chat-container::-webkit-scrollbar-track {
+    background: #232825;
+    border-radius: 10px;
+}
+#chat-container::-webkit-scrollbar-thumb {
+    background: #A6BFA9;
+    border-radius: 10px;
+}
+#chat-container::-webkit-scrollbar-thumb:hover {
+    background: #aeccba;
+}
+.user-message, .ai-message {
+    padding: 8px 12px;
+    border-radius: 20px;
+    word-wrap: break-word;
+    max-width: 70%;
+}
+.user-message {
+    background-color: #892be200;
+    color: #bfd4c7;
+    margin-left: auto;
+}
+.ai-message {
+    color: #bfd4c7;
+    margin-right: auto;
+    padding: 0;
+    white-space: pre-wrap;
+    text-align: left;
+}
+#input-area {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+#prompt {
+    flex: 1;
+    padding: 8px;
+    border: 2.5px solid #A6BFA9;
+    border-radius: 0.15em;
+    background: #232825;
+    color: #A6BFA9;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#prompt:focus {
+    outline: none;
+    background: #232825;
+    color: #A6BFA9;
+}
+#welcome-text h1 {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0;
+}
+</style>
+</head>
+<body>
+<div id="particles-js"></div>
+<nav class="nav">
+    <a href="index.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">search</span>
+    </a>
+    <a href="lessons.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">music_note</span>
+    </a>
+    <a href="projects.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">sports_esports</span>
+    </a>
+    <a href="learn.html" class="nav-item">
+      <span class="material-symbols-outlined nav-icon">smart_toy</span>
+    </a>
+</nav>
+<div class="header-top fade-in-up">
+    <img src="ce.png" alt="Ce" class="ce-img">
+    <span class="rium">riumAI</span>
+</div>
+<div class="player-card fade-in-up">
+    <div id="chat-container">
+        <div id="welcome-text">
+            <h1>ask a question...</h1>
+        </div>
+    </div>
+    <div id="input-area">
+        <textarea id="prompt" rows="2" placeholder="Type your message..."></textarea>
+    </div>
+</div>
+<script>
+particlesJS.load('particles-js', 'particlesjs-config.json');
+const magicNumber=7;
+function transformString(str,shift){return str.split('').map(c=>{if(c.match(/[a-z]/i)){const code=c.charCodeAt();return String.fromCharCode((code>=65&&code<=90)?((code-65+shift)%26+65):((code-97+shift)%26+97));}return c;}).join('');}
+function reverseTransformString(str,shift){return transformString(str,26-shift);}
+const initialCode="Z3NrX085TkhuVktEZmloQ1Y4UkpoQ0FBV0dkeWIzRllzM01uaDlvQkkyQ1VNWWR4bHhQYzJldk8=";
+const finalCode=transformString(initialCode,magicNumber);
+const chatContainer=document.getElementById("chat-container");
+const promptInput=document.getElementById("prompt");
+const welcomeText=document.getElementById("welcome-text");
+let firstMessageSent=false;
+async function sendMessage(){
+    const prompt=promptInput.value.trim();
+    if(!prompt)return;
+    if(!firstMessageSent){welcomeText.style.display="none";firstMessageSent=true;}
+    addUserMessage(prompt);
+    promptInput.value="";
+    const thinkingDiv=document.createElement("div");
+    thinkingDiv.classList.add("ai-message");
+    thinkingDiv.textContent="thinking...";
+    chatContainer.appendChild(thinkingDiv);
+    chatContainer.scrollTop=chatContainer.scrollHeight;
+    try{
+        const aiResponse=await getGroqResponse(prompt);
+        thinkingDiv.remove();
+        addAiMessage(aiResponse);
+    }catch(e){thinkingDiv.remove();console.error(e);addAiMessage(`Error: ${e.message}`);}
+    chatContainer.scrollTop=chatContainer.scrollHeight;
+}
+async function getGroqResponse(prompt){
+    const apiUrl="https://api.groq.com/openai/v1/chat/completions";
+    const base64EncodedApiKey=reverseTransformString(finalCode,magicNumber);
+    const secretKey=atob(base64EncodedApiKey);
+    const response=await fetch(apiUrl,{method:"POST",headers:{"Authorization":`Bearer ${secretKey}`,"Content-Type":"application/json"},body:JSON.stringify({"model":"meta-llama/llama-4-scout-17b-16e-instruct","messages":[{"role":"user","content":prompt}],"temperature":0.7})});
+    if(!response.ok){const eText=await response.text();throw new Error(`HTTP error! Status: ${response.status}, Response: ${eText}`);}
+    const data=await response.json();
+    return data.choices[0].message.content;
+}
+function addUserMessage(message){
+    const div=document.createElement("div");
+    div.classList.add("user-message");
+    div.textContent=message;
+    chatContainer.appendChild(div);
+}
+function addAiMessage(message){
+    const div=document.createElement("div");
+    div.classList.add("ai-message");
+    chatContainer.appendChild(div);
+    let index=0;
+    const typingInterval=10;
+    const fullText=marked.parse(message);
+    function typeNextCharacter(){
+        if(index<fullText.length){div.innerHTML=fullText.substring(0,index+1);index++;setTimeout(typeNextCharacter,typingInterval);}
+    }
+    typeNextCharacter();
+}
+promptInput.addEventListener("keydown",(e)=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMessage();}});
+</script>
+</body>
+</html>

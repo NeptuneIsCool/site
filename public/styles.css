@@ -36,14 +36,13 @@ body {
 
 .nav-icon {
     font-size: 35px !important;
-    transition: color 0.3s, transform 0.3s;
     transform: scale(1);
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .nav-item:hover .nav-icon {
     color: #fff;
     transform: scale(1.25);
-    transition: color 0.3s, transform 0.3s;
 }
 
 
