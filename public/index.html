@@ -8,36 +8,85 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined">
 <style>
 #overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: rgba(0,0,0,0.85);
-display: none;
-z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a1f1c;
+    display: none;
+    z-index: 9999;
 }
 
 #overlay iframe {
-width: 100%;
-height: 100%;
-border: none;
+    width: 100%;
+    height: calc(100% - 100px);
+    border: none;
+    margin-top: 100px;
+    transition: margin-top 0.3s ease, height 0.3s ease;
+}
+
+body.nav-small-active #overlay iframe {
+    height: calc(100% - 60px);
+    margin-top: 60px;
 }
 
 #proxysel {
-display: none;
+    display: none;
 }
 
-body *:not(#idk):not(#overlay):not(script):not(style) {
-transition: opacity 0.3s;
+body *:not(#idk):not(#overlay):not(.nav):not(script):not(style) {
+    transition: opacity 0.3s;
 }
 
 .search-bar {
-transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.3s, color 0.3s, border-color 0.3s !important;
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1), background 0.3s, color 0.3s, border-color 0.3s !important;
 }
 
 .search-bar:focus {
-width: 500px !important;
+    width: 500px !important;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(21, 24, 22, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    border-bottom: 4px solid #000; 
+    transition: height 0.3s ease;
+}
+
+.nav.nav-small {
+    height: 60px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2em;
+    text-decoration: none;
+    color: #A6BFA9;
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-icon {
+    font-size: 35px !important;
+    transform: scale(1);
+    transition: color 0.3s ease, transform 0.3s ease !important;
+}
+
+.nav-item:hover .nav-icon {
+    color: #fff;
+    transform: scale(1.25) !important;
 }
 </style>
 </head>
@@ -46,35 +95,35 @@ width: 500px !important;
 <div id="particles-js"></div>
 
 <nav class="nav">
-<a href="index.html" class="nav-item">
-<span class="material-symbols-outlined nav-icon">search</span>
-</a>
-<a href="lessons.html" class="nav-item">
-<span class="material-symbols-outlined nav-icon">music_note</span>
-</a>
-<a href="projects.html" class="nav-item">
-<span class="material-symbols-outlined nav-icon">sports_esports</span>
-</a>
-<a href="learn.html" class="nav-item">
-<span class="material-symbols-outlined nav-icon">smart_toy</span>
-</a>
+    <a href="index.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">search</span>
+    </a>
+    <a href="lessons.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">music_note</span>
+    </a>
+    <a href="projects.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">sports_esports</span>
+    </a>
+    <a href="learn.html" class="nav-item">
+        <span class="material-symbols-outlined nav-icon">smart_toy</span>
+    </a>
 </nav>
 
 <div class="iDontKnowWhatToNameTs">
-<img src="ce.png" alt="Ce" class="ce-img">
-<span class="rium">rium</span>
+    <img src="ce.png" alt="Ce" class="ce-img">
+    <span class="rium">rium</span>
 </div>
 
 <form id="idk">
-<input id="url" type="text" class="search-bar" placeholder="Search the web...">
-<select id="proxysel">
-<option value="scramjet" selected>scramjet</option>
-<option value="uv">ultraviolet</option>
-</select>
+    <input id="url" type="text" class="search-bar" placeholder="Search the web...">
+    <select id="proxysel">
+        <option value="scramjet" selected>scramjet</option>
+        <option value="uv">ultraviolet</option>
+    </select>
 </form>
 
 <div id="overlay">
-<iframe id="iframe"></iframe>
+    <iframe id="iframe"></iframe>
 </div>
 
 <script src="/baremux/index.js" defer></script>
@@ -92,27 +141,30 @@ const urlInput = document.getElementById('url');
 const proxySelect = document.getElementById('proxysel');
 const overlay = document.getElementById('overlay');
 const iframe = document.getElementById('iframe');
+const navbar = document.querySelector('.nav');
 
 form.addEventListener('submit', e => {
-e.preventDefault();
-const url = urlInput.value.trim();
-const proxy = proxySelect.value;
-if (!url) return;
-if (proxy === 'scramjet') {
-iframe.src = `/scramjet?url=${encodeURIComponent(url)}`;
-} else if (proxy === 'uv') {
-iframe.src = `/uv?url=${encodeURIComponent(url)}`;
-}
-document.querySelectorAll('body > *:not(#idk):not(#overlay):not(script):not(style)').forEach(el => {
-el.style.opacity = 0;
-});
-overlay.style.display = 'block';
+    e.preventDefault();
+    const url = urlInput.value.trim();
+    const proxy = proxySelect.value;
+    if (!url) return;
+    if (proxy === 'scramjet') {
+        iframe.src = `/scramjet?url=${encodeURIComponent(url)}`;
+    } else if (proxy === 'uv') {
+        iframe.src = `/uv?url=${encodeURIComponent(url)}`;
+    }
+    document.querySelectorAll('body > *:not(#idk):not(#overlay):not(.nav):not(script):not(style)').forEach(el => {
+        el.style.opacity = 0;
+    });
+    overlay.style.display = 'block';
+    navbar.classList.add('nav-small');
+    document.body.classList.add('nav-small-active'); 
 });
 
 urlInput.addEventListener('keypress', e => {
-if (e.key === 'Enter') {
-form.dispatchEvent(new Event('submit'));
-}
+    if (e.key === 'Enter') {
+        form.dispatchEvent(new Event('submit'));
+    }
 });
 </script>
 
