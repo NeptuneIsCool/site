@@ -2,5 +2,5 @@
 npm install
 npm start
 ```
-
-If scramjet is having problems try going to inspect -> application -> storage -> clear site data
+dih
+any scramjet errors i swear its not my fault this scramjet build is unstable as hell
